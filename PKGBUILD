@@ -13,11 +13,8 @@ sha256sums=('SKIP')
 
 build() {
   cd "WisperType-$pkgver"
-  
-  # Set C++ linker flags to resolve native C++ symbols in whisper-rs
   export RUSTFLAGS="-C link-arg=-lstdc++"
-  
-  cargo build --release --locked
+  cargo build --release --locked --manifest-path Cargo.toml
 }
 
 package() {
