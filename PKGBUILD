@@ -7,7 +7,7 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/yourusername/wispertype"
 license=('MIT')
 depends=('gtk4' 'libadwaita' 'pipewire' 'wtype')
-makedepends=('cargo' 'git' 'clang')
+makedepends=('cargo' 'git' 'clang' 'cmake')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 

@@ -2,7 +2,8 @@
 set -e
 
 echo "=== 1. Installing Arch Linux System Dependencies ==="
-sudo pacman -S --needed base-devel rustup clang wtype pipewire libadwaita git
+sudo pacman -S --needed base-devel rustup clang cmake wtype pipewire libadwaita git
+rustup default stable
 
 echo "=== 2. Downloading Local Whisper AI Model (~75MB) ==="
 mkdir -p ~/.local/share/whispertype/models
@@ -36,10 +37,10 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0"
 cpal = "0.15"
-whisper-rs = "0.11"
+whisper-rs = "0.16"
 tokio = { version = "1.35", features = ["full"] }
 gtk4 = { version = "0.8", package = "gtk4" }
-libadwaita = { version = "0.6", package = "adw" }
+libadwaita = { version = "0.6", package = "libadwaita" }
 shellexpand = "3.1"
 CARGO
 
@@ -112,12 +113,14 @@ impl WhisperTranscriber {
         params.set_print_progress(false);
 
         state.full(params, pcm_data).map_err(|e| anyhow!("Transcribe failed: {:?}", e))?;
-        let num = state.full_n_segments().map_err(|e| anyhow!("Segment error: {:?}", e))?;
+        let num = state.full_n_segments();
         
         let mut text = String::new();
         for i in 0..num {
-            if let Ok(segment) = state.full_get_segment_text(i) {
-                text.push_str(&segment);
+            if let Some(segment) = state.get_segment(i) {
+                if let Ok(segment_text) = segment.to_str() {
+                    text.push_str(segment_text);
+                }
             }
         }
         Ok(text)
@@ -147,7 +150,7 @@ use audio::AudioRecorder;
 use injector::type_text;
 use stt::WhisperTranscriber;
 use std::path::Path;
-use std::io::{self, BufRead};
+use std::io;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -195,7 +198,7 @@ arch=('x86_64' 'aarch64')
 url="https://github.com/yourusername/wispertype"
 license=('MIT')
 depends=('gtk4' 'libadwaita' 'pipewire' 'wtype')
-makedepends=('cargo' 'git' 'clang')
+makedepends=('cargo' 'git' 'clang' 'cmake')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 

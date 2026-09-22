@@ -7,7 +7,7 @@ use audio::AudioRecorder;
 use injector::type_text;
 use stt::WhisperTranscriber;
 use std::path::Path;
-use std::io::{self, BufRead};
+use std::io;
 
 #[tokio::main]
 async fn main() -> Result<()> {

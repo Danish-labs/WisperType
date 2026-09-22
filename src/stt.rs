@@ -20,12 +20,14 @@ impl WhisperTranscriber {
         params.set_print_progress(false);
 
         state.full(params, pcm_data).map_err(|e| anyhow!("Transcribe failed: {:?}", e))?;
-        let num = state.full_n_segments().map_err(|e| anyhow!("Segment error: {:?}", e))?;
+        let num = state.full_n_segments();
         
         let mut text = String::new();
         for i in 0..num {
-            if let Ok(segment) = state.full_get_segment_text(i) {
-                text.push_str(&segment);
+            if let Some(segment) = state.get_segment(i) {
+                if let Ok(segment_text) = segment.to_str() {
+                    text.push_str(segment_text);
+                }
             }
         }
         Ok(text)
