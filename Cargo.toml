@@ -3,11 +3,15 @@ name = "wispertype"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "wispertype"
+path = "src/main.rs"
+
 [dependencies]
 anyhow = "1.0"
 cpal = "0.15"
-whisper-rs = "0.16"
+hound = "3.5"
 tokio = { version = "1.35", features = ["full"] }
-gtk4 = { version = "0.8", package = "gtk4" }
-libadwaita = { version = "0.6", package = "libadwaita" }
-shellexpand = "3.1"
+reqwest = { version = "0.11", features = ["multipart", "json"] }
+gtk4 = "0.8"
+libadwaita = "0.6"

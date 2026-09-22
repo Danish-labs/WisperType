@@ -1,22 +1,25 @@
-# Maintainer: Your Name <your.email@example.com>
+# Maintainer: Danish <your.email@example.com>
 pkgname=wispertype
 pkgver=0.1.0
 pkgrel=1
 pkgdesc="Offline system-wide voice-to-text dictation tool for Wayland"
 arch=('x86_64' 'aarch64')
-url="https://github.com/yourusername/wispertype"
+url="https://github.com/Danish-labs/WisperType"
 license=('MIT')
 depends=('gtk4' 'libadwaita' 'pipewire' 'wtype')
-makedepends=('cargo' 'git' 'clang' 'cmake')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+makedepends=('cargo' 'git')
+source=("git+$url.git#branch=main")
 sha256sums=('SKIP')
 
 build() {
-  cd "$pkgname-$pkgver"
-  cargo build --release --locked
+  cd "WisperType"
+  cargo build --release
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "WisperType"
   install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  if [ -f "wispertype.desktop" ]; then
+    install -Dm644 "wispertype.desktop" "$pkgdir/usr/share/applications/wispertype.desktop"
+  fi
 }
