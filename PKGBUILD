@@ -12,12 +12,12 @@ source=("git+$url.git#branch=main")
 sha256sums=('SKIP')
 
 build() {
-  cd "$pkgname"
+  cd "WisperType"
   cargo build --release
 }
 
 package() {
-  cd "$pkgname"
+  cd "WisperType"
   install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
   if [ -f "wispertype.desktop" ]; then
     install -Dm644 "wispertype.desktop" "$pkgdir/usr/share/applications/wispertype.desktop"
