@@ -6,19 +6,20 @@ pkgdesc="Offline system-wide voice-to-text dictation tool for Wayland"
 arch=('x86_64' 'aarch64')
 url="https://github.com/Danish-labs/WisperType"
 license=('MIT')
-depends=('gtk4' 'libadwaita' 'pipewire' 'wtype' 'gcc-libs')
-makedepends=('cargo' 'git' 'clang' 'cmake')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+depends=('gtk4' 'libadwaita' 'pipewire' 'wtype')
+makedepends=('cargo' 'git')
+source=("git+$url.git#branch=main")
 sha256sums=('SKIP')
 
 build() {
-  cd "WisperType-$pkgver"
-  export RUSTFLAGS="-C link-arg=-lstdc++"
-  cargo build --release --locked
+  cd "$pkgname"
+  cargo build --release
 }
 
 package() {
-  cd "WisperType-$pkgver"
+  cd "$pkgname"
   install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
-  install -Dm644 "wispertype.desktop" "$pkgdir/usr/share/applications/wispertype.desktop"
+  if [ -f "wispertype.desktop" ]; then
+    install -Dm644 "wispertype.desktop" "$pkgdir/usr/share/applications/wispertype.desktop"
+  fi
 }

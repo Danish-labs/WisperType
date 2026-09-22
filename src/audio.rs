@@ -18,12 +18,16 @@ impl AudioRecorder {
         let device = host.default_input_device().ok_or_else(|| anyhow!("No input device found"))?;
         let config = device.default_input_config()?;
         let buffer = Arc::clone(&self.buffer);
-        buffer.lock().unwrap().clear();
+        buffer.lock().map_err(|_| anyhow!("Audio buffer lock poisoned"))?.clear();
 
         let stream = match config.sample_format() {
             SampleFormat::F32 => device.build_input_stream(
                 &config.into(),
-                move |data: &[f32], _| { buffer.lock().unwrap().extend_from_slice(data); },
+                move |data: &[f32], _| {
+                    if let Ok(mut buffer) = buffer.lock() {
+                        buffer.extend_from_slice(data);
+                    }
+                },
                 |_| {},
                 None,
             )?,
@@ -35,9 +39,9 @@ impl AudioRecorder {
         Ok(())
     }
 
-    pub fn stop_recording(&mut self) -> Vec<f32> {
+    pub fn stop_recording(&mut self) -> Result<Vec<f32>> {
         self.stream = None;
-        let mut guard = self.buffer.lock().unwrap();
-        std::mem::take(&mut *guard)
+        let mut buffer = self.buffer.lock().map_err(|_| anyhow!("Audio buffer lock poisoned"))?;
+        Ok(std::mem::take(&mut *buffer))
     }
 }

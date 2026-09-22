@@ -6,16 +6,16 @@ use anyhow::Result;
 use audio::AudioRecorder;
 use injector::type_text;
 use stt::WhisperTranscriber;
-use std::path::Path;
 use std::io;
+use std::path::Path;
 
 #[tokio::main]
 async fn main() -> Result<()> {
     println!("=== WisperType Local Dictation Starting ===");
     let model_path = shellexpand::tilde("~/.local/share/whispertype/models/ggml-tiny.en.bin").to_string();
-    
+
     if !Path::new(&model_path).exists() {
-        eprintln!("Model missing at: {}", model_path);
+        eprintln!("Model missing at: {model_path}");
         return Ok(());
     }
 
@@ -32,7 +32,7 @@ async fn main() -> Result<()> {
     line.clear();
     io::stdin().read_line(&mut line)?;
 
-    let pcm_data = recorder.stop_recording();
+    let pcm_data = recorder.stop_recording()?;
     println!("Transcribing audio...");
 
     let text = transcriber.transcribe(&pcm_data)?;

@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/whisper-rs-sys-f5b269da882c3ad7/out/build/cmake_install.cmake",
+		"/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/whisper-rs-sys-f5b269da882c3ad7/out/build/ggml/cmake_install.cmake",
+		"/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/whisper-rs-sys-f5b269da882c3ad7/out/build/ggml/src/cmake_install.cmake",
+		"/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/whisper-rs-sys-f5b269da882c3ad7/out/build/ggml/src/ggml-cpu/cmake_install.cmake",
+		"/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/whisper-rs-sys-f5b269da882c3ad7/out/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

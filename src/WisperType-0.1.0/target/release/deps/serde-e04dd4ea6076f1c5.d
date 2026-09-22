@@ -1,0 +1,14 @@
+/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/deps/serde-e04dd4ea6076f1c5.d: /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/serde-8554890c2061ede1/out/private.rs
+
+/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/deps/libserde-e04dd4ea6076f1c5.rlib: /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/serde-8554890c2061ede1/out/private.rs
+
+/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/deps/libserde-e04dd4ea6076f1c5.rmeta: /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/serde-8554890c2061ede1/out/private.rs
+
+/home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs:
+/home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs:
+/home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs:
+/home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs:
+/home/danish/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs:
+/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/serde-8554890c2061ede1/out/private.rs:
+
+# env-dep:OUT_DIR=/home/danish/WhisperType/WisperType/src/WisperType-0.1.0/target/release/build/serde-8554890c2061ede1/out
