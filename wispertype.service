@@ -1,0 +1,13 @@
+[Unit]
+Description=WisperType local transcription backend
+After=network.target graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env bash -lc 'mkdir -p ~/.local/share/wispertype/models && if [ ! -f ~/.local/share/wispertype/models/ggml-tiny.en.bin ]; then curl -L --fail -o ~/.local/share/wispertype/models/ggml-tiny.en.bin https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en.bin; fi && python3 -m http.server 8080 --directory ~/.local/share/wispertype/models'
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target
