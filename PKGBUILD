@@ -6,13 +6,17 @@ pkgdesc="Offline system-wide voice-to-text dictation tool for Wayland"
 arch=('x86_64' 'aarch64')
 url="https://github.com/Danish-labs/WisperType"
 license=('MIT')
-depends=('gtk4' 'libadwaita' 'pipewire' 'wtype')
+depends=('gtk4' 'libadwaita' 'pipewire' 'wtype' 'gcc-libs')
 makedepends=('cargo' 'git' 'clang' 'cmake')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')
 
 build() {
   cd "WisperType-$pkgver"
+  
+  # Set C++ linker flags to resolve native C++ symbols in whisper-rs
+  export RUSTFLAGS="-C link-arg=-lstdc++"
+  
   cargo build --release --locked
 }
 
